@@ -91,6 +91,7 @@ AUTHENTICATION_BACKENDS = [
     'core.backends.EmailBackend',
     'django.contrib.auth.backends.ModelBackend',
 ]
+# LOGOUT_REDIRECT_URL = 'core.signin'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

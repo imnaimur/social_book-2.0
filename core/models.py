@@ -46,6 +46,6 @@ class Post(models.Model):
     no_of_likes = 0
     caption = models.TextField()
     created_at  = models.DateTimeField(default = datetime.now)
-    postImage = models.ImageField(upload_to="post_img")
+    postImage = models.ImageField(upload_to="post_img",default="")
     def __str__(self) -> str:
         return str(self.postId)

@@ -3,14 +3,16 @@ from django.http import HttpResponse
 from . models import CustomUser,Post
 from django.contrib.auth import login
 # from django.contrib.auth.models import auth
+from django.contrib.auth.decorators import login_required
 
-from django.contrib.auth import get_user_model,login,authenticate
+from django.contrib.auth import get_user_model,authenticate
 from django.contrib import messages
 
 
 
 User = get_user_model
 # Create your views here.
+@login_required(login_url='signin')
 def index(request):
 
     user_object = CustomUser.objects.get(email = request.user.email)
@@ -18,6 +20,9 @@ def index(request):
     posts = Post.objects.all()
     return render(request,'index.html',{'posts':posts,'img':img})
 
+
+
+@login_required(login_url='signin')
 def settings(request):
     user_obj = CustomUser.objects.get(email = request.user.email)
 
@@ -136,7 +141,7 @@ def signin(request):
     else:
         return render(request,'signin.html')
 
-
+@login_required(login_url='signin')
 def upload(request):
     email = CustomUser.objects.get(email = request.user.email)
     caption = request.POST['caption']
@@ -144,3 +149,8 @@ def upload(request):
     new_post = Post.objects.create(email = email,postImage = img ,caption = caption)
     new_post.save()
     return redirect('/')
+
+
+def logout(request):
+    request.session.flush()
+    return render(request,'signin.html')
