@@ -22,15 +22,14 @@ def settings(request):
     user_obj = CustomUser.objects.get(email = request.user.email)
 
     if request.method == 'POST':
+        image = request.FILES.get('image')
         if request.FILES.get('image') == None:
             image = user_obj.profileimg
-        else:
-            image = request.FILES.get('image')
         fname = request.POST['fname']
         lname = request.POST['lname']
         bio = request.POST['bio']
         location = request.POST['location']
-        occupation = request.POST['occopation']
+        occupation = request.POST['occupation']
         # relationship = request.POST['relationship']
         # relationship = request.POST.get('relationship',False)
 
@@ -43,11 +42,12 @@ def settings(request):
         # user_obj.relationship = relationship
         user_obj.save()
         
-        return render(request,'setting.html',{"user_obj":user_obj})
+        # return render(request,'setting.html',{"user_obj":user_obj})
+        return redirect('settings')
 
     
 
-    return render(request,'setting.html')
+    return render(request,'setting.html',{"user_obj":user_obj})
 
 def signup(request):
     if request.method == "POST":
