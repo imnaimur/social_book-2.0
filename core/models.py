@@ -18,7 +18,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin,models.Model):
     bio = models.CharField(max_length=100,blank=True,null=True)
     location = models.CharField(max_length=50,blank=True,null=True)
     occupation = models.CharField(max_length=20,blank=True,null=True)
-    relationship = models.CharField(max_length=20)
+    relationship = models.CharField(max_length=20,blank=True,null=True)
 
     has_joined = models.DateField(default = datetime.now)  
 

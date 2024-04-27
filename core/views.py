@@ -1,8 +1,6 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
 from . models import CustomUser,Post
 from django.contrib.auth import login
-# from django.contrib.auth.models import auth
 from django.contrib.auth.decorators import login_required
 
 from django.contrib.auth import get_user_model,authenticate
