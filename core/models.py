@@ -32,11 +32,7 @@ class CustomUser(AbstractBaseUser,PermissionsMixin,models.Model):
     objects = CustomUserManager()
 
     def __str__(self):
-        # return str(self.userId)
-        return self.email    
-    class Meta(AbstractBaseUser.Meta):
-        verbose_name = 'User'
-        verbose_name_plural = 'Users'
+        return self.email 
 
         
 
